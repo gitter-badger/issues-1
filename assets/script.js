@@ -20,7 +20,7 @@ var App = {
 
 var GHAPI = {
   client_id: '5eaa4c43fab0ec0772ea',
-  secret_proxy: 'http://chillidonut.com/junk/secret-proxy.php?code=',
+  secret_proxy: 'http://www.chillidonut.com/junk/issues-secret.php?code=',
 
   code: null,
   access_token: null,
