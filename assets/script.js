@@ -8,7 +8,7 @@ var App = {
     $('#github-auth').on('click', function () {
       GHAPI.auth();
     });
-  }
+  },
 
   ensureLogin: function (callback)
   {
@@ -26,7 +26,7 @@ var GHAPI = {
   username: null,
 
 
-  checkAuth: function () {}
+  checkAuth: function () {},
 
   // begin auth process
   auth: function () {
@@ -34,7 +34,7 @@ var GHAPI = {
       '/login/oauth/authorize' +
       '?client_id=58a3dcf21a0bae21db44' +
       '&scope=gist');
-  }
+  },
 
   // for the login.html postMessage reply
   handleResponse: function () {},
@@ -87,5 +87,5 @@ Issue.prototype.load = function () {}
 
 
 $(function () {
-  Issues.init();
+  App.init();
 });
