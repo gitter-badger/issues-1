@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Github Issues</title>
+  <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/style.css">
+
+  <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.js"></script>
+  <script src="assets/script.js"></script>
+</head>
+<body>
+<div class="container">
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Log In</h3>
+  </div>
+  <div class="panel-body">
+    Authorise with Github:
+    <a href="#loggingin" class="btn btn-primary btn-sm" id="github-auth">Log in</a>
+  </div>
+</div>
+
+Sort by
+<div class="btn-group" data-toggle="buttons">
+  <a class="btn"><input type="radio" name="repo-sort"> recently updated</a>
+  <a class="btn"><input type="radio" name="repo-sort"> name</a>
+</div>
+
+View
+<div class="btn-group" data-toggle="buttons">
+  <a class="btn"><input type="radio" name="repo-filter"> all</a>
+  <a class="btn"><input type="radio" name="repo-filter"> private only</a>
+  <a class="btn"><input type="radio" name="repo-filter"> public only</a>
+  <a class="btn"><input type="radio" name="repo-filter"> mine</a>
+  <a class="btn"><input type="radio" name="repo-filter"> forked</a>
+</div>
+
+<hr>
+
+</div>
+</body>
+</html>
