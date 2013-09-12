@@ -41,7 +41,7 @@ var GHAPI = {
 
   // for the login.html postMessage reply
   handleAuthResponse: function (event) {
-    GHAPI.code = event.data;
+    var code = GHAPI.code = event.data;
 
     $.get(GHAPI.secret_proxy + code, function (access_token) {
       $('#access_token').val(access_token);
