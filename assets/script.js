@@ -35,7 +35,7 @@ var GHAPI = {
 
     window.open('https://github.com' +
       '/login/oauth/authorize' +
-      '?client_id='+ client_id +
+      '?client_id='+ GHAPI.client_id +
       '&scope=repo');
   },
 
