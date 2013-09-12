@@ -19,7 +19,8 @@ var App = {
 }
 
 var GHAPI = {
-  appId: '5eaa4c43fab0ec0772ea',
+  client_id: '5eaa4c43fab0ec0772ea',
+  secret_proxy: 'http://chillidonut.com/junk/secret-proxy.php?code=',
 
   code: null,
   access_token: null,
@@ -30,33 +31,31 @@ var GHAPI = {
 
   // begin auth process
   auth: function () {
+    window.addEventListener('message', GHAPI.handleAuthResponse);
+
     window.open('https://github.com' +
       '/login/oauth/authorize' +
-      '?client_id=58a3dcf21a0bae21db44' +
-      '&scope=gist');
+      '?client_id='+ client_id +
+      '&scope=repo');
   },
 
   // for the login.html postMessage reply
-  handleResponse: function () {},
+  handleAuthResponse: function (event) {
+    GHAPI.code = event.data;
+
+    $.get(GHAPI.secret_proxy + code, function (access_token) {
+      $('#access_token').val(access_token);
+
+      $.getJSON('https://api.github.com/user?access_token=' + access_token,
+        function (user) {
+          GHAPI.username = user.login;
+          $('#auth-username').val(user.login);
+          // todo: add class to body to enable/disable auth notices
+        });
+    });
+  },
 
   call: function (method, args) {}
-
-/*
-window.addEventListener('message', function (event) {
-  var code = event.data;
-  $('#code').val(code);
-
-  // Step 5
-  $.get('token.php?code=' + code, function (access_token) {
-    // Step 7
-    $('#access_token').val(access_token);
-
-    $.getJSON('https://api.github.com/user?access_token=' + access_token, function (user) {
-      $('#username').val(user.login);
-    });
-  });
-});
-*/
 
 }
 

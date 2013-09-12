@@ -10,6 +10,30 @@
   <script src="assets/script.js"></script>
 </head>
 <body>
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Issues</a>
+  </div>
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="auth-none"><a>
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        Not logged in
+      </a></li>
+      <li class="auth-true"><a>
+        <span class="glyphicon glyphicon-user"></span>
+        <span id="auth-username">unknown</span>
+      </a></li>
+    </ul>
+  </div><!--/.nav-collapse -->
+</nav>
+
 <div class="container">
 
 <div class="panel panel-default">
