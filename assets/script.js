@@ -1,9 +1,11 @@
 
 var App = {
+  issues: [],
 
   init: function ()
   {
     GHAPI.watch('user', App.updateAuthStatus);
+    App.watch('issues', App.updateUI);
     $('body').addClass('auth-none');
 
     // bind events
@@ -22,7 +24,37 @@ var App = {
   },
 
   refresh: function () {
-    // GHAPI.call()
+    GHAPI.api('issues', {},
+      function (data) {
+        console.log('refreshed issues', data);
+        App.issues = data;
+        App.issues_bak = data;
+      });
+  },
+
+  updateUI: function () {
+    var $issueList = $('#issues');
+    $issueList.find('.issue').remove();
+    if (App.issues.length)
+      $('#no-issues').hide();
+    else
+      $('#no-issues').show();
+
+    var issueTpl = $('#blank-issue');
+    for (var i = 0; i < App.issues.length; i++) {
+      var issue = App.issues[i],
+          elem = issueTpl.clone();
+      elem.attr('id', '');
+
+      elem.find('.number').text('#'+ issue.number);
+      elem.find('.title').text(issue.title);
+      elem.find('.author').attr('href', issue.user.url).
+        text(issue.user.login);
+      elem.find('.comments').text(issue.comments);
+
+      // todo: iterate through labels and append them to ul.labels
+    }
+
   }
 
 }
@@ -67,35 +99,16 @@ var GHAPI = {
     });
   },
 
-  call: function (method, args) {}
+  api: function (method, args, callback) {
+    args = args || {};
+
+    $.getJSON('https://api.github.com/'+ method
+      +'?access_token='+ GHAPI.access_token,
+      args,
+      callback);
+  }
 
 }
-
-function Issue() {
-/*
-<script>
-$('#gist_new').click(function () {
-  var url = 'https://api.github.com/gists' +
-    '?access_token=' + $('#access_token').val();
-
-  var data = JSON.stringify({
-    "public": false,
-    "files": {
-      "sample.txt": {
-        "content": $('#gist_content').val()
-      }
-    }
-  });
-
-  $.post(url, data, function (gist) {
-    $('#gist_link').val(gist.html_url);
-  });
-});
-*/
-}
-Issue.prototype.save = function () {}
-Issue.prototype.load = function () {}
-
 
 $(function () {
   App.init();
@@ -133,7 +146,9 @@ if (!Object.prototype.watch) {
       }
       , setter = function (val) {
         oldval = newval;
-        return newval = handler.call(this, prop, oldval, val);
+        // bugfix: http://stackoverflow.com/questions/6998981/why-doesnt-the-shim-for-watch-and-unwatch-at-https-gist-github-com-384583
+        newval = handler.call(this, prop, oldval, val) || val;
+        return newval;
       }
       ;
 
