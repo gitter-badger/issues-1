@@ -5,7 +5,7 @@
   <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="assets/style.css">
 
-  <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
   <script src="assets/bootstrap/js/bootstrap.js"></script>
   <script src="assets/script.js"></script>
 </head>
@@ -48,20 +48,39 @@
 
 Sort by
 <div class="btn-group" data-toggle="buttons">
-  <a class="btn"><input type="radio" name="repo-sort"> recently updated</a>
-  <a class="btn"><input type="radio" name="repo-sort"> name</a>
+  <a class="btn btn-info"><input type="radio" name="repo-sort"> recently updated</a>
+  <a class="btn btn-info"><input type="radio" name="repo-sort"> name</a>
 </div>
 
 View
 <div class="btn-group" data-toggle="buttons">
-  <a class="btn"><input type="radio" name="repo-filter"> all</a>
-  <a class="btn"><input type="radio" name="repo-filter"> private only</a>
-  <a class="btn"><input type="radio" name="repo-filter"> public only</a>
-  <a class="btn"><input type="radio" name="repo-filter"> mine</a>
-  <a class="btn"><input type="radio" name="repo-filter"> forked</a>
+  <a class="btn btn-info"><input type="radio" name="repo-filter"> all</a>
+  <a class="btn btn-info"><input type="radio" name="repo-filter"> private only</a>
+  <a class="btn btn-info"><input type="radio" name="repo-filter"> public only</a>
+  <a class="btn btn-info"><input type="radio" name="repo-filter"> mine</a>
+  <a class="btn btn-info"><input type="radio" name="repo-filter"> forked</a>
 </div>
 
 <hr>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Labels</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody id="issues">
+    <tr>
+      <td colspan="5" class="text-muted">
+        No issues listed
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 </body>

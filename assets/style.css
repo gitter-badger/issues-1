@@ -1,0 +1,13 @@
+body.auth-none .auth-none {
+  display: block;
+}
+body.auth-none .auth-true {
+  display: none;
+}
+
+body.auth-true .auth-none {
+  display: none;
+}
+body.auth-true .auth-true {
+  display: block;
+}
